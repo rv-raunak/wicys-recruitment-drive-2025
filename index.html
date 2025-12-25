@@ -1,31 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Combining CSS Selectors</title>
-  <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiCyS VIT Bhopal | Joining the Mission</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #7b1fa2;
+            --secondary: #00bcd4;
+            --dark: #0f0c29;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            overflow: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+        }
+
+        .logo-placeholder {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            background: linear-gradient(to right, #ffffff, #b027ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid var(--secondary);
+            border-radius: 50%;
+            margin: 30px auto 0;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Ambient Background Glows */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            filter: blur(100px);
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        #redirectp{
+            font-weight: 900;
+        }
+    </style>
 </head>
-
-<!-- Don't change any of the HTML code! -->
-
 <body>
-  <h1>To Do List</h1>
-  <h2>Monday</h2>
-  <div class="box">
-    <p class="done">Do these things today!</p>
-    <ul class="list">
-      <li>Wash Clothes</li>
-      <li class="done">Read</li>
-      <li class="done">Maths Questions</li>
-    </ul>
-  </div>
 
-  <ul>
-    <p class="done">Other items</p>
-  </ul>
-  <p>The best preparation for tomorrow is doing your best today.</p>
+    <div class="glow" style="top: 10%; left: 10%;"></div>
+    <div class="glow" style="bottom: 10%; right: 10%;"></div>
 
+    <div class="glass-card">
+        <div class="logo-placeholder">WiCyS</div>
+        <h1>You're Awesome!</h1>
+        <p>You have already taken the first step of your journey with us.</p>
+        <p id="redirectp">Redirecting you to the application form...</p>
+        <div class="loader"></div>
+    </div>
+
+    <script>
+        // 1. Fire Confetti immediately
+        function celebrate() {
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#7b1fa2', '#00bcd4', '#ff0099']
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#7b1fa2', '#00bcd4', '#ff0099']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // 2. Trigger celebration on load
+        window.onload = celebrate;
+
+        // 3. Redirect after 2.5 seconds
+        setTimeout(function() {
+            window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdgcEXyiH5IJaoj1QjcyTmD2MkW0nr1_cLQmmDZVMRfMMU1yA/viewform?usp=sharing&ouid=115585569686947128557"; 
+        }, 2500);
+    </script>
 </body>
-
 </html>
